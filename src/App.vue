@@ -5,7 +5,8 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div class="container">
       <ul class="nav">
-        <RouterLink to="/">Todo List</RouterLink>
+        <RouterLink to="/"><li>Todo List</li></RouterLink>
+        <RouterLink to="/new"><li>New Todo</li></RouterLink>
       </ul>
     <RouterView />
   </div>
