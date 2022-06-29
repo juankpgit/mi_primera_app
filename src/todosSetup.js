@@ -1,8 +1,8 @@
 import { computed, ref  } from "vue";
-import initialTodos from '@/mockup/todos.js'
+//import initialTodos from '@/mockup/todos.js'
 
-const todos = ref([...initialTodos])
-
+//const todos = ref([...initialTodos])
+const todos = ref([])
 const todosIncompleted = computed(
     function(){
         let resuInc = todos.value.filter( t => !t.completed)
@@ -17,7 +17,7 @@ const todosCompleted = computed(
     }
 )
 
-const length = computed( () => todos.value.length )
+const length = computed(() => todos.value.length);
 
 const toggle = function (id) {
     const todo = todos.value.find( t=> t.id === id )
@@ -31,11 +31,12 @@ const deleteTodo = (id) => {
 }
 
 const add = (name) => {
-    newid = length + 1
-    initialTodos.value.push({id: newid, name:name,completed:false})
+   todos.value.push( {id: length.value + 1, name, completed: false} )
 }
 
+const update = (payload_todos) => {
+    todos.value = payload_todos
+}
 
-
-const todosFactory = () => ({ todosIncompleted, toggle, todosCompleted, deleteTodo })
+const todosFactory = () => ({ todosIncompleted, toggle, todosCompleted, deleteTodo, add, update })
 export {todosFactory}
